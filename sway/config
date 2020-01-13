@@ -1,0 +1,220 @@
+# mod
+set $mod Mod4
+#set $mod Alt
+
+# font
+font pango: Roboto 12
+
+# thin borders
+hide_edge_borders both
+
+#new_window pixel 0
+default_border none
+gaps inner 0
+smart_gaps on
+
+# drag windows
+floating_modifier $mod
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# lock
+#bindsym $mod+Shift+x exec i3lock --textcolor=eee8d5ff --ringcolor=07364295 --keyhlcolor=268bd295 --bshlcolor=dc322f95 --insidecolor=002b3695 --insidevercolor=268bd295 --ringvercolor=268bd295 --insidewrongcolor=dc322f95 --ringwrongcolor=dc322f95 --linecolor=07364295 --separatorcolor=07364295
+#bindsym $mod+Shift+x exec "/home/nicola/.config/i3/lock/lock.sh"
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+bindsym $mod+Left workspace prev
+bindsym $mod+Right workspace next
+
+# reload the configuration file
+bindsym $mod+Shift+r reload
+
+# exit i3
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'Logout?' -b 'Yes' 'i3-msg exit'"
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	bindsym h resize shrink width 10 px or 10 ppt
+	bindsym j resize grow height 10 px or 10 ppt
+	bindsym k resize shrink height 10 px or 10 ppt
+	bindsym l resize grow width 10 px or 10 ppt
+
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+# resize mode
+bindsym $mod+r mode "resize"
+
+set $bg-color 	         #2f343fee
+set $inactive-bg-color   #2f343fee
+set $text-color          #000000
+set $inactive-text-color #a3a4a5
+set $urgent-bg-color     #E53935
+
+#bb <- Good transparency (disabled because of black borders on GTK windows)
+set $boract              #268BD2d9
+#50
+set $boroff              #000000d9
+#90
+set $indcol              #000000d9
+
+set $boroff2             #000000d9
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $boract             $boract            $text-color          $indcol	$boract
+client.unfocused        $boroff	            $boroff            $inactive-text-color $boroff	$boroff
+client.focused_inactive $boroff2            $boroff2           $inactive-text-color   $boroff	$boroff2
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indcol	$urgent-bg-color
+
+# sticky window
+bindsym $mod+Shift+s sticky toggle
+
+# default floating
+for_window [class="^Pavucontrol$"] floating enable
+for_window [class="^Skype$"] floating enable
+for_window [title="^Blender User Preferences$"] floating enable
+
+for_window [instance="^i3_float$"] floating enable
+
+# default workspaces
+
+
+# workspace default monitors
+#workspace $workspace0 output DVI-I-2
+
+# key-bindings
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioPause exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc previous
+
+bindsym XF86MonBrightnessUp exec light -A 5 && notify-send -r 274448 -u low \" $('light')%\"
+bindsym XF86MonBrightnessDown exec light -U 5 && notify-send -r 274448 -u low \" $('light')%\"
+
+bindsym $mod+Shift+x exec swaylock -c 0D1724
+
+bindsym $mod+i exec firefox-developer-edition
+bindsym $mod+p exec firefox-developer-edition --private-window
+bindsym $mod+n exec thunar
+
+bindsym $mod+Return exec termite
+bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+Shift+q kill
+
+bindsym $mod+Shift+d exec rofi -show run -padding 300
+bindsym $mod+d exec rofi -show drun -sidebar-mode -padding 200 -show-icons
+bindsym $mod+c exec passmenu --type -l 6 -nb "#000" -sb "#0196FF" -sf "#000" -fn "Roboto"
+
+bindsym Print exec grim -g "$(slurp -b 0D1724aa -c 268bd2 -d)" - | wl-copy
+
+# fix gtk theme
+set $gnome-schema org.gnome.desktop.interface
+exec_always gsettings set $gnome-schema gtk-theme 'Arc-Dark'
+exec_always gsettings set $gnome-schema icon-theme 'Papirus-Dark'
+exec_always gsettings set $gnome-schema cursor-theme 'Breeze_Obsidian'
+
+# startup
+exec_always --no-startup-id process_toggle --restart waybar
+exec --no-startup-id mako
+exec --no-startup-id libinput-gestures-setup start
+exec --no-startup-id nm-applet --indicator
+exec --no-startup-id dropbox
+#exec --no-startup-id rot8
+#exec --no-startup-id kdeconnect-indicator
+
+input * {
+	natural_scroll enabled
+	pointer_accel 0.40
+	click_method clickfinger
+	dwt disabled
+	xkb_options altwin:swap_lalt_lwin
+}
+
+input "1386:18669:Wacom_HID_48ED_Finger" map_to_output eDP-1
+input "1386:18669:Wacom_HID_48ED_Pen" map_to_output eDP-1
+
+output * bg /home/nicola/Documents/wallpapers/penguin.png fill
+

@@ -1,0 +1,42 @@
+*{
+	font-family: "Roboto";
+	border: none;
+}
+
+stack, header, widget, treeview, paned, toolbar, menubar, *.popup menu, messagedialog, popover, headerbar, list, iconview {
+	background-color: #000;
+	background-image: none;
+	color: #c2e2e2;
+}
+
+entry, textview text {
+	background-color: #000;
+	color: #268bd2;
+}
+entry *, textview text * {
+	color: #268bd2;
+}
+
+toolitem button:disabled * {
+	color: #555;
+}
+
+button {
+	background-image: image(#000);
+}
+button * {
+	color: #c2e2e2;
+}
+button:hover{
+	background-image: image(#22344D);
+}
+button:active, treeview treeview:selected{
+	background-image: image(#334866);
+}
+
+
+/* App specific */
+
+.termite {
+	padding: 10px;
+}

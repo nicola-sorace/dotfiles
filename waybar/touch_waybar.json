@@ -1,0 +1,86 @@
+{
+	"layer": "top",
+	"position": "right",
+	"width": 80,
+	"modules-center": ["custom/keyboard", "custom/bright_up", "custom/bright_down", "custom/vol_up", "custom/vol_down", "custom/vol_toggle", "custom/separator", "custom/internet", "custom/files", "custom/notes", "custom/draw", "custom/separator", "custom/move_left", "custom/move_right", "custom/move_up", "custom/move_down", "custom/separator", "custom/close_window"],
+
+	"custom/separator": {
+		"format": "<span font='Material Icons 42' rise='-2560'> </span> {}"
+	},
+
+	"custom/launcher": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "rofi -show drun -sidebar-mode -padding 200 -show-icons"
+	},
+
+	"custom/keyboard": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "toggle virtboard"
+	},
+	"custom/bright_up": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "light -A 2"
+	},
+	"custom/bright_down": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "light -U 2"
+	},
+	"custom/vol_up": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "pactl set-sink-volume 0 +5%"
+	},
+	"custom/vol_down": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "pactl set-sink-volume 0 -5%"
+	},
+	"custom/vol_toggle": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "pactl set-sink-mute 0 toggle"
+	},
+
+
+	"custom/internet": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "firefox-developer-edition"
+	},
+	"custom/files": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "thunar"
+	},
+	"custom/notes": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "xournalpp"
+	},
+	"custom/draw": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "krita"
+	},
+
+
+	"custom/move_left": {
+		"format": "<span font='Material Icons 24' rise='-2560'></span> {}",
+		"on-click": "swaymsg move left"
+	},
+	"custom/move_right": {
+		"format": "<span font='Material Icons 24' rise='-2560'></span> {}",
+		"on-click": "swaymsg move right"
+	},
+	"custom/move_up": {
+		"format": "<span font='Material Icons 24' rise='-2560'></span> {}",
+		"on-click": "swaymsg move up"
+	},
+	"custom/move_down": {
+		"format": "<span font='Material Icons 24' rise='-2560'></span> {}",
+		"on-click": "swaymsg move down"
+	},
+	
+	"custom/close_window": {
+		"format": "<span font='Material Icons 24' rise='-2560'></span> {}",
+		"on-click": "swaymsg kill"
+	},
+	
+	"custom/close_touch": {
+		"format": "<span font='Material Icons 42' rise='-2560'></span> {}",
+		"on-click": "toggle waybar -c /home/nicola/dotflies/touch_waybar.json"
+	}
+}

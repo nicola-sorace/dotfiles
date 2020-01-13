@@ -1,0 +1,111 @@
+* {
+	border: none;
+	font-family: Roboto;
+	font-size: 18px;
+	color: #c2e2e2;
+	transition: 0.2s;
+
+	text-shadow: none;
+	box-shadow: none;
+}
+window#waybar {
+	background: rgba(0,0,0, 1.0);
+}
+
+widget {
+	background: rgba(0,0,0, 0.0);
+}
+
+#workspaces {
+	background: transparent;
+}
+#workspaces button {
+	background: rgba(34,52,77, 0.0);
+	border-radius: 0px;
+	border-top: 0px;
+	border-bottom: solid rgba(38,139,210, 0.0) 0px;
+	padding-top: 0px;
+}
+#workspaces button:hover {
+	background: rgba(34,52,77, 0.5);
+	border-bottom: solid rgba(38,139,210, 0.20) 4px;
+	padding-top: 4px;
+}
+#workspaces button.focused {
+	border-bottom: solid rgba(38,139,210, 1.0) 2px;
+	padding-top: 2px;
+}
+#workspaces button.focused:hover {
+	background: rgba(34,52,77, 0.0);
+	border-bottom: solid rgba(38,139,210, 0.75) 2px;
+}
+#workspaces button.persistent * {
+	color: #676e7d;
+}
+
+#workspaces button:first-child, #workspaces button:first-child:hover {
+	background-image: url("logo.svg");
+	background-size: cover;
+	transition: background-image 0.0s;
+}
+
+#window {
+	margin-left: 2px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+#window {
+	color: #9101FF;
+	border-bottom: solid rgba(145,1,255, 0.95) 2px;
+}
+#mpd, #custom-mail {
+	color: rgba(0,0,0, 1.0);
+	background-color: rgba(145,1,255, 1.0);
+	border-radius: 6px;
+	margin: 6px;
+	margin-right: 3px;
+	margin-left: 3px;
+}
+#mpd.stopped, #custom-mail.old, #custom-touchbar {
+	color: rgba(145,1,255, 0.5);
+	background-color: rgba(145,1,255, 0.0);
+	border-bottom: solid rgba(145,1,255, 0.95) 0px;
+}
+
+widget > label{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#tray{
+	margin-left: 10px;
+	margin-right: 20px;
+}
+#clock {
+	color: #01FFAB;
+}
+#battery {
+	color: #00E5E0;
+}
+#memory, #cpu, #temperature {
+	font-size: 0px;
+	padding: 0px;
+}
+#network {
+	color: #0196FF;
+}
+#pulseaudio {
+	color: #7F57FF;
+}
+
+#memory.critical, #cpu.critical, #temperature.critical, #battery.critical {
+	background-color: rgba(183,34,64, 1.0);
+	color: #000;
+	font-size: 18px;
+	padding-left: 10px;
+	padding-right: 10px;
+
+	border-radius: 6px;
+	margin: 6px;
+	margin-right: 3px;
+	margin-left: 3px;
+}

@@ -1,0 +1,105 @@
+{
+	"layer": "top",
+	"position": "bottom",
+	"height": 40,
+	"modules-left": ["sway/workspaces","sway/window","sway/mode"],
+	"modules-center": ["custom/mail", "mpd", "custom/touchbar"],
+	"modules-right": ["memory","cpu","temperature", "pulseaudio","network","battery","clock","tray"],
+
+	"tray": {
+		"icon-size": 20
+	},
+
+	"clock": {
+		"interval": 1,
+		"format": "<span font='Material Icons' rise='-2560'></span> {:%a  %Y.%m.%d  %H:%M:%S}",
+		"format-alt": "{:%a  %Y.%m.%d  %I:%M%p}"
+	},
+
+	"battery": {
+		"format": "{icon} {capacity}%",
+		"format-charging": "⦿ {capacity}",
+		"format-icons": ["○", "◔", "◑", "◕", "●"],
+		"states": {
+			"critical": 20
+		}
+	},
+
+	"memory": {
+		"format": "<span font='Material Icons' rise='-2560'></span> {}%",
+		"states": {
+			"critical": 60
+		}
+	},
+
+	"cpu": {
+		"format": "<span font='Material Icons' rise='-2560'></span> {}%",
+		"states": {
+			"critical": 80
+		}
+	},
+
+	"temperature": {
+		"format": "<span font='Material Icons' rise='-2560'></span> {}°C",
+		"critical-threshold": 70
+	},
+
+	"network": {
+		"format-wifi": "<span font='Material Icons' rise='-2560'></span> {essid}"
+	},
+
+	"pulseaudio": {
+		"format": "<span font='Material Icons' rise='-2560'>{icon}</span> {volume}%",
+		"format-muted": "<span font='Material Icons' rise='-2560'></span> <span font='8'>{volume}%</span>",
+		"format-icons": {
+			"default": ["","",""],
+			"headphones": "",
+			"headset": "",
+			"phone": ""
+		},
+		"on-click": "pavucontrol"
+	},
+
+	"mpd": {
+		"format-stopped": "<span font='Material Icons' rise='-2560'></span>",
+		"format": "{stateIcon} {title}",
+		"state-icons": {
+			"paused": "<span font='Material Icons' rise='-2560'></span>",
+			"playing": "<span font='Material Icons' rise='-2560'></span>"
+		},
+		"on-click": "termite -e ncmpcpp"
+	},
+
+	"custom/touchbar": {
+		"format": "<span font='Material Icons' rise='-2560'></span> {}",
+		"on-click": "toggle waybar -c /home/nicola/dotfiles/touch_waybar.json"
+	},
+
+	"custom/mail": {
+		"exec": "~/.config/waybar/mail_module.sh",
+		"interval": 10,
+		"format": "<span font='Material Icons' rise='-2560'></span> {}",
+		"return-type": "json",
+		"on-click": "termite -e neomutt"
+	},
+
+	"sway/workspaces": {
+		"persistent_workspaces": {
+			"1": []
+		},
+		"format": "{icon}",
+		"format-icons": {
+			"1":" ",
+			"2":"2",
+			"3":"3",
+			"4":"4",
+			"5":"5",
+			"6":"6",
+			"7":"7",
+			"8":"8",
+			"9":"9",
+			"10":"<span font='Material Icons' rise='-2560'></span>"
+		}
+	}
+
+}
