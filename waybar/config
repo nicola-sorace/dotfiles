@@ -17,6 +17,7 @@
 	},
 
 	"battery": {
+		"bat": "BAT0",
 		"format": "{icon} {capacity}%",
 		"format-charging": "⦿ {capacity}",
 		"format-icons": ["○", "◔", "◑", "◕", "●"],
@@ -67,12 +68,12 @@
 			"paused": "<span font='Material Icons' rise='-2560'></span>",
 			"playing": "<span font='Material Icons' rise='-2560'></span>"
 		},
-		"on-click": "termite -e ncmpcpp"
+		"on-click": "kitty -e ncmpcpp"
 	},
 
 	"custom/touchbar": {
 		"format": "<span font='Material Icons' rise='-2560'></span> {}",
-		"on-click": "toggle waybar -c /home/nicola/dotfiles/touch_waybar.json"
+		"on-click": "process_toggle waybar -c ~/.config/waybar/touch_waybar.json"
 	},
 
 	"custom/mail": {
@@ -80,7 +81,7 @@
 		"interval": 10,
 		"format": "<span font='Material Icons' rise='-2560'></span> {}",
 		"return-type": "json",
-		"on-click": "termite -e neomutt"
+		"on-click": "kitty -e neomutt"
 	},
 
 	"sway/workspaces": {

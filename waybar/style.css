@@ -58,7 +58,7 @@ widget {
 	color: #9101FF;
 	border-bottom: solid rgba(145,1,255, 0.95) 2px;
 }
-#mpd, #custom-mail {
+#mpd, #custom-mail, #battery.charging {
 	color: rgba(0,0,0, 1.0);
 	background-color: rgba(145,1,255, 1.0);
 	border-radius: 6px;

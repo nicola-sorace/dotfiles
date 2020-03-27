@@ -22,10 +22,6 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# lock
-#bindsym $mod+Shift+x exec i3lock --textcolor=eee8d5ff --ringcolor=07364295 --keyhlcolor=268bd295 --bshlcolor=dc322f95 --insidecolor=002b3695 --insidevercolor=268bd295 --ringvercolor=268bd295 --insidewrongcolor=dc322f95 --ringwrongcolor=dc322f95 --linecolor=07364295 --separatorcolor=07364295
-#bindsym $mod+Shift+x exec "/home/nicola/.config/i3/lock/lock.sh"
-
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -171,8 +167,10 @@ bindsym XF86AudioPause exec mpc toggle
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc previous
 
-bindsym XF86MonBrightnessUp exec light -A 5 && notify-send -r 274448 -u low \" $('light')%\"
-bindsym XF86MonBrightnessDown exec light -U 5 && notify-send -r 274448 -u low \" $('light')%\"
+bindsym XF86MonBrightnessUp exec light -T 2.0 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔆 $('light')%\" > /tmp/notify_bright
+bindsym XF86MonBrightnessDown exec light -T 0.5 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔅 $('light')%\" > /tmp/notify_bright
+bindsym Shift+XF86MonBrightnessUp exec light -T 1.1 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔅 $('light')%\" > /tmp/notify_bright
+bindsym Shift+XF86MonBrightnessDown exec light -T 0.9 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔅 $('light')%\" > /tmp/notify_bright
 
 bindsym $mod+Shift+x exec swaylock -c 0D1724
 
@@ -180,13 +178,15 @@ bindsym $mod+i exec firefox-developer-edition
 bindsym $mod+p exec firefox-developer-edition --private-window
 bindsym $mod+n exec thunar
 
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec kitty
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+d exec rofi -show run -padding 300
 bindsym $mod+d exec rofi -show drun -sidebar-mode -padding 200 -show-icons
 bindsym $mod+c exec passmenu --type -l 6 -nb "#000" -sb "#0196FF" -sf "#000" -fn "Roboto"
+
+bindsym $mod+m exec cat /home/nicola/.config/sway/emoji_list | dmenu -l 6 -nb "#000" -sb "#0196FF" -sf "#000" -fn "Roboto" | cut -d"-" -f1 | wl-copy
 
 bindsym Print exec grim -g "$(slurp -b 0D1724aa -c 268bd2 -d)" - | wl-copy
 
