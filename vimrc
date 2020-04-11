@@ -25,12 +25,14 @@ set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 
 call vundle#begin()
 
-Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tomtom/tcomment_vim'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
+Plugin 'chrisbra/colorizer'
+Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 call vundle#end()
@@ -52,7 +54,8 @@ set splitbelow splitright
 highlight MatchParen ctermfg=white ctermbg=yellow cterm=NONE
 highlight SpecialKey ctermfg=black
 
+let mapleader = " "
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 nmap <S-X> :bdelete<CR>
-nmap <Space> za<CR>
+nmap <Leader>f za<CR>

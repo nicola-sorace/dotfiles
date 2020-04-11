@@ -167,10 +167,11 @@ bindsym XF86AudioPause exec mpc toggle
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc previous
 
-bindsym XF86MonBrightnessUp exec light -T 2.0 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔆 $('light')%\" > /tmp/notify_bright
-bindsym XF86MonBrightnessDown exec light -T 0.5 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔅 $('light')%\" > /tmp/notify_bright
-bindsym Shift+XF86MonBrightnessUp exec light -T 1.1 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔅 $('light')%\" > /tmp/notify_bright
-bindsym Shift+XF86MonBrightnessDown exec light -T 0.9 && notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low \"🔅 $('light')%\" > /tmp/notify_bright
+set $bright_notify notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low --hint=int:value:$(light | cut -d'.' -f1) \"🔆 $(light)%\" > /tmp/notify_bright
+bindsym XF86MonBrightnessUp exec light -T 2.0 && $bright_notify
+bindsym XF86MonBrightnessDown exec light -T 0.5 && $bright_notify
+bindsym Shift+XF86MonBrightnessUp exec light -T 1.1 && $bright_notify
+bindsym Shift+XF86MonBrightnessDown exec light -T 0.9 && $bright_notify
 
 bindsym $mod+Shift+x exec swaylock -c 0D1724
 
@@ -205,16 +206,23 @@ exec --no-startup-id dropbox
 #exec --no-startup-id rot8
 #exec --no-startup-id kdeconnect-indicator
 
-input * {
+input type:touchpad {
 	natural_scroll enabled
-	pointer_accel 0.40
+	pointer_accel 0.4
+	scroll_factor 0.5
 	click_method clickfinger
 	dwt disabled
+}
+
+input type:keyboard {
 	xkb_options altwin:swap_lalt_lwin
 }
 
 input "1386:18669:Wacom_HID_48ED_Finger" map_to_output eDP-1
 input "1386:18669:Wacom_HID_48ED_Pen" map_to_output eDP-1
+
+# exec swayidle -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+# for_window [con_id="__focused__"] inhibit_idle fullscreen # Not working
 
 output * bg /home/nicola/Documents/wallpapers/penguin.png fill
 
