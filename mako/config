@@ -1,7 +1,10 @@
 layer=overlay
 font=Roboto 14
-background-color=#000000cc
+background-color=#222222ee
 text-color=#c2e2e2
+progress-color=#9101FF
+margin=20
 padding=20
 border-size=0
+border-radius=4
 default-timeout=5000
