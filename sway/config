@@ -187,9 +187,10 @@ bindsym $mod+Shift+d exec rofi -show run -padding 300
 bindsym $mod+d exec rofi -show drun -sidebar-mode -padding 200 -show-icons
 bindsym $mod+c exec passmenu --type -l 6 -nb "#000" -sb "#0196FF" -sf "#000" -fn "Roboto"
 
-bindsym $mod+m exec cat /home/nicola/.config/sway/emoji_list | dmenu -l 6 -nb "#000" -sb "#0196FF" -sf "#000" -fn "Roboto" | cut -d"-" -f1 | wl-copy
+bindsym $mod+m exec cat /home/nicola/.config/sway/emoji_list | bemenu -l 6 -p ">" --nb "#000000" --tf "#0196FF" --hb "#0196FF" --hf "#000000" --fn "Roboto 18" | cut -d"-" -f1 | wl-copy
 
-bindsym Print exec grim -g "$(slurp -b 0D1724aa -c 268bd2 -d)" - | wl-copy
+bindsym Print exec grim -g "$(~/.config/sway/scripts/window_select.sh)" - | wl-copy
+bindsym Shift+Print exec grim - | wl-copy
 
 # fix gtk theme
 set $gnome-schema org.gnome.desktop.interface
@@ -205,6 +206,7 @@ exec --no-startup-id nm-applet --indicator
 exec --no-startup-id dropbox
 #exec --no-startup-id rot8
 #exec --no-startup-id kdeconnect-indicator
+exec_always --no-startup-id flashfocus
 
 input type:touchpad {
 	natural_scroll enabled
