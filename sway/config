@@ -158,9 +158,9 @@ for_window [instance="^i3_float$"] floating enable
 #workspace $workspace0 output DVI-I-2
 
 # key-bindings
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioPause exec mpc toggle
@@ -191,6 +191,7 @@ bindsym $mod+m exec cat /home/nicola/.config/sway/emoji_list | bemenu -l 6 -p ">
 
 bindsym Print exec grim -g "$(~/.config/sway/scripts/window_select.sh)" - | wl-copy
 bindsym Shift+Print exec grim - | wl-copy
+bindsym $mod+Print exec wl-paste > /tmp/screen.png && feh /tmp/screen.png
 
 # fix gtk theme
 set $gnome-schema org.gnome.desktop.interface
@@ -223,8 +224,11 @@ input type:keyboard {
 input "1386:18669:Wacom_HID_48ED_Finger" map_to_output eDP-1
 input "1386:18669:Wacom_HID_48ED_Pen" map_to_output eDP-1
 
-# exec swayidle -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+#exec swayidle -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 290 "light -S 10" resume "light -S 100" -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+#exec swayidle -w timeout 300 'swaymsg "output * dpms off"' timeout 600 'swaylock -f -c 0f0f0f' resume 'swaymsg "output * dpms on"'
 # for_window [con_id="__focused__"] inhibit_idle fullscreen # Not working
 
-output * bg /home/nicola/Documents/wallpapers/penguin.png fill
+#output * bg /home/nicola/Documents/wallpapers/penguin.png fill
+output * bg /home/nicola/Pictures/wallpapers/pluto.jpg fill
 

@@ -19,37 +19,61 @@ runtime! archlinux.vim
 
 
 """ Vundle settings start
-set nocompatible
-filetype off
-set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
+"set nocompatible
+"filetype off
+"set rtp+=/usr/share/vim/vimfiles/autoload/vundle.vim
 
-call vundle#begin()
+"call vundle#begin()
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/syntastic'
-Plugin 'chrisbra/colorizer'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'tpope/vim-surround'
+"Plugin 'airblade/vim-gitgutter'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'chrisbra/colorizer'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'ctrlpvim/ctrlp.vim'
 
-call vundle#end()
-filetype plugin indent on
+"call vundle#end()
+"filetype plugin indent on
 """ Vundle settings end
+
+
+call plug#begin()
+Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
+Plug 'chrisbra/colorizer'
+Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+call plug#end()
 
 
 set number relativenumber
 " set list
 set mouse=a
 set clipboard=unnamedplus
-set tabstop=4
-set shiftwidth=4
+
+"set tabstop=4
+"set shiftwidth=4
+set expandtab
+set shiftwidth=2
+set autoindent
+set smartindent
 
 set foldmethod=syntax
 set foldlevelstart=10
 set splitbelow splitright
+
+set conceallevel=2
+let g:vim_markdown_math = 1
 
 highlight MatchParen ctermfg=white ctermbg=yellow cterm=NONE
 highlight SpecialKey ctermfg=black

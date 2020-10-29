@@ -1,0 +1,15 @@
+*
+!.gitignore
+!bashrc
+!sway/*
+!waybar/*
+!zsh/*
+!nvim/init.vim
+!vimrc
+!termite/config
+!tmux.conf
+!rofi/config
+!mako/config
+!fontconfig/fonts.conf
+!gtk-2.0/gtk.css
+!gtk-3.0/gtk.css
