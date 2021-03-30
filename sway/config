@@ -148,6 +148,7 @@ bindsym $mod+Shift+s sticky toggle
 for_window [class="^Pavucontrol$"] floating enable
 for_window [class="^Skype$"] floating enable
 for_window [title="^Blender User Preferences$"] floating enable
+for_window [title="^wdisplays$"] floating enable
 
 for_window [instance="^i3_float$"] floating enable
 
@@ -167,11 +168,13 @@ bindsym XF86AudioPause exec mpc toggle
 bindsym XF86AudioNext exec mpc next
 bindsym XF86AudioPrev exec mpc previous
 
+bindsym Alt+p exec wdisplays
+
 set $bright_notify notify-send.sh -p -r $(cat /tmp/notify_bright 2> /dev/null || echo 0) -u low --hint=int:value:$(light | cut -d'.' -f1) \"🔆 $(light)%\" > /tmp/notify_bright
-bindsym XF86MonBrightnessUp exec light -T 2.0 && $bright_notify
-bindsym XF86MonBrightnessDown exec light -T 0.5 && $bright_notify
-bindsym Shift+XF86MonBrightnessUp exec light -T 1.1 && $bright_notify
-bindsym Shift+XF86MonBrightnessDown exec light -T 0.9 && $bright_notify
+bindsym XF86MonBrightnessUp exec light -t 250 -T 2.0 && $bright_notify # Increase brightness
+bindsym XF86MonBrightnessDown exec light -t 250 -T 0.5 && $bright_notify # Decrease brightness
+bindsym Shift+XF86MonBrightnessUp exec light -t 250 -T 1.1 && $bright_notify # Increase brightness (fine)
+bindsym Shift+XF86MonBrightnessDown exec light -t 250 -T 0.9 && $bright_notify # Decrease brightness (fine)
 
 bindsym $mod+Shift+x exec swaylock -c 0D1724
 
@@ -199,6 +202,11 @@ exec_always gsettings set $gnome-schema gtk-theme 'Arc-Dark'
 exec_always gsettings set $gnome-schema icon-theme 'Papirus-Dark'
 exec_always gsettings set $gnome-schema cursor-theme 'Breeze_Obsidian'
 
+# Fix xdg-desktop-portal bug
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 # startup
 exec_always --no-startup-id process_toggle --restart waybar
 exec --no-startup-id mako
@@ -207,6 +215,7 @@ exec --no-startup-id nm-applet --indicator
 exec --no-startup-id dropbox
 #exec --no-startup-id rot8
 #exec --no-startup-id kdeconnect-indicator
+exec --no-startup-id ydotoold
 exec_always --no-startup-id flashfocus
 
 input type:touchpad {
@@ -224,8 +233,7 @@ input type:keyboard {
 input "1386:18669:Wacom_HID_48ED_Finger" map_to_output eDP-1
 input "1386:18669:Wacom_HID_48ED_Pen" map_to_output eDP-1
 
-#exec swayidle -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
-exec swayidle -w timeout 290 "light -S 10" resume "light -S 100" -w timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 580 "light -t 250 -T 0.25" resume "light -t 250 -T 4" -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 #exec swayidle -w timeout 300 'swaymsg "output * dpms off"' timeout 600 'swaylock -f -c 0f0f0f' resume 'swaymsg "output * dpms on"'
 # for_window [con_id="__focused__"] inhibit_idle fullscreen # Not working
 

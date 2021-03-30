@@ -41,18 +41,22 @@ runtime! archlinux.vim
 
 
 call plug#begin()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'bfredl/nvim-ipy'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+Plug 'dense-analysis/ale'
 Plug 'chrisbra/colorizer'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'lervag/vimtex'
 call plug#end()
 
 
@@ -64,7 +68,7 @@ set clipboard=unnamedplus
 "set tabstop=4
 "set shiftwidth=4
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
 set autoindent
 set smartindent
 
@@ -79,7 +83,39 @@ highlight MatchParen ctermfg=white ctermbg=yellow cterm=NONE
 highlight SpecialKey ctermfg=black
 
 let mapleader = " "
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
+nmap <Leader><Tab> :bnext<CR>
+nmap <Leader><S-Tab> :bprevious<CR>
 nmap <S-X> :bdelete<CR>
 nmap <Leader>f za<CR>
+
+
+" Plugin Mappings
+
+""" IPython
+let g:nvim_ipy_perform_mappings = 0
+let g:ipy_truncate_input = 1
+nmap <Leader>r <Plug>(IPy-Run)
+nmap <Leader><S-r> <Plug>(IPy-RunAll)
+nmap <Leader><CR> <Plug>(IPy-RunCell)
+nmap <Leader>? <Plug>(IPy-WordObjInfo)
+"""
+
+""" coc-texvim
+let g:tex_flavor = 'latex'
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+"""
+
+""" coc-spell-checker
+vmap <leader>a <Plug>(coc-codeaction-selected)
+nmap <leader>a <Plug>(coc-codeaction-selected)
+"""

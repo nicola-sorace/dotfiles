@@ -81,7 +81,8 @@
 		"interval": 10,
 		"format": "<span font='Material Icons' rise='-2560'></span> {}",
 		"return-type": "json",
-		"on-click": "kitty -e neomutt"
+		/*"on-click": "kitty -e neomutt"*/
+                "on-click": "kitty -e aerc"
 	},
 
 	"sway/workspaces": {
