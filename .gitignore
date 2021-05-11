@@ -5,6 +5,7 @@
 !waybar/*
 !zsh/*
 !nvim/init.vim
+!nvim/coc-settings.json
 !vimrc
 !termite/config
 !kitty/kitty.conf
