@@ -218,24 +218,9 @@ exec --no-startup-id dropbox
 exec --no-startup-id ydotoold
 exec_always --no-startup-id flashfocus
 
-input type:touchpad {
-	natural_scroll enabled
-	pointer_accel 0.4
-	scroll_factor 0.5
-	click_method clickfinger
-	dwt disabled
-}
-
-input type:keyboard {
-	xkb_options altwin:swap_lalt_lwin
-}
-
-input "1386:18669:Wacom_HID_48ED_Finger" map_to_output eDP-1
-input "1386:18669:Wacom_HID_48ED_Pen" map_to_output eDP-1
-
-exec swayidle -w timeout 580 "light -t 250 -T 0.25" resume "light -t 250 -T 4" -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
-#exec swayidle -w timeout 300 'swaymsg "output * dpms off"' timeout 600 'swaylock -f -c 0f0f0f' resume 'swaymsg "output * dpms on"'
-# for_window [con_id="__focused__"] inhibit_idle fullscreen # Not working
+swaymsg create_output
+swaymsg output "HEADLESS-1" resolution 1920x1080
+wayvnc -o HEADLESS-1 0.0.0.0
 
 #output * bg /home/nicola/Documents/wallpapers/penguin.png fill
 output * bg /home/nicola/Pictures/wallpapers/pluto.jpg fill

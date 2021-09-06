@@ -76,7 +76,7 @@ set foldmethod=syntax
 set foldlevelstart=10
 set splitbelow splitright
 
-set conceallevel=2
+set conceallevel=0
 let g:vim_markdown_math = 1
 
 highlight MatchParen ctermfg=white ctermbg=yellow cterm=NONE
