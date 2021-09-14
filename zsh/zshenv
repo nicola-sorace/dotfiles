@@ -1,0 +1,22 @@
+# Default programs
+export EDITOR="nvim"
+export TERMINAL="kitty"
+export BROWSER="firefox-developer-edition"
+
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CURRENT_DESKTOP="sway"
+export LESSHISTFILE="-"
+export GOPATH="$XDG_DATA_HOME"/go
+
+# Environmental fixes
+export MOZ_ENABLE_WAYLAND=1
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# Path
+export PATH=$GOPATH/bin:$HOME/.local/bin:$PATH
+
+# Multicore make
+export MAKEFLAGS="-j$(nproc)"
+

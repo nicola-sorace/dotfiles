@@ -18,24 +18,6 @@ export LANG=en_GB.UTF-8
 autoload bashcompinit
 bashcompinit
 
-# Default programs
-export EDITOR="nvim"
-export TERMINAL="kitty"
-export BROWSER="firefox-developer-edition"
-
-# XDG
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export LESSHISTFILE="-"
-export GOPATH="$XDG_DATA_HOME"/go
-
-# Environmental fixes
-export MOZ_ENABLE_WAYLAND=1
-export _JAVA_AWT_WM_NONREPARENTING=1
-
-# Path
-export PATH=$GOPATH/bin:$PATH
-
 # OpenFOAM
 export FOAM_INST_DIR=/opt/OpenFOAM
 alias ofoam="source ${FOAM_INST_DIR}/OpenFOAM-8/etc/bashrc" # OpenFOAM

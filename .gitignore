@@ -3,6 +3,7 @@
 !bashrc
 !sway
 !waybar
+waybar/config
 !zsh
 !nvim/init.vim
 !nvim/coc-settings.json
