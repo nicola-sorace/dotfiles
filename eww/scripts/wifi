@@ -1,0 +1,34 @@
+#!/bin/bash
+
+data=$(nmcli -t -f name,type,device c)
+
+wireless=false
+ethernet=false
+
+while IFS= read -r line; do
+    IFS=: read -r name type device <<< $line
+    if [ "$device" = "" ]; then
+        continue
+    fi
+
+    if [ $(echo $type | grep "wireless") ]; then
+        wireless=true
+    elif [ $(echo $type | grep "ethernet") ]; then
+        ethernet=true
+    fi
+done <<< "$data"
+
+if [ ! wireless ] && [ ! ethernet ]; then
+    icon="wifi_off"
+else
+    icon=""
+    if $wireless; then
+        icon="$icon wifi"
+    fi
+    if $ethernet; then
+        icon="$icon lan"
+    fi
+fi
+
+echo {\"icon\": \"$icon\"}
+

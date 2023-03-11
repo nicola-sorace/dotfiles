@@ -1,0 +1,10 @@
+#!/bin/bash
+
+get_window() {
+    hyprctl activewindow -j | jq --raw-output .title
+}
+
+get_window
+socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
+    get_window
+done

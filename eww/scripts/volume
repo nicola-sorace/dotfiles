@@ -1,0 +1,32 @@
+#!/bin/bash
+
+case "$1" in
+    "get")
+        volume=$(pamixer --get-volume)
+
+        if [ $(pamixer --get-mute) = "true" ]; then
+            icon="volume_off"
+        elif (( $volume < 25 )); then
+            icon="volume_mute"
+        elif (( $volume < 75 )); then
+            icon="volume_down"
+        else
+            icon="volume_up"
+        fi
+
+        echo {\"icon\": \"$icon\", \"value\": \"$volume\"}
+        ;;
+
+    "scroll")
+        case "$2" in
+            "down")
+                pamixer -d 5
+                ;;
+            "up")
+                pamixer -i 5
+                ;;
+        esac
+        ;;
+    "click")
+        pamixer -t
+esac

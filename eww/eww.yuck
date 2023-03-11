@@ -1,0 +1,115 @@
+(defwidget bar []
+    (centerbox :orientation "h"
+        (workspaces)
+        (music)
+        (sidestuff)
+    )
+)
+
+
+(defwidget metric [id state onscroll onclick onrightclick]
+    (eventbox
+     :class id
+     :onscroll {onscroll}
+     :onclick {onclick}
+     :onrightclick {onrightclick}
+        (overlay
+            (box :class "icon"
+                (label :class "icon" :text "${state.icon}")
+            )
+            (box :class "value"
+                (label :text "${state.value}")
+            )
+            (box :class "circle"
+                (circular-progress
+                    :value "${state.value}"
+                    :thickness 1
+                    :clockwise true
+                    :start-at 75
+                )
+            )
+        )
+    )
+)
+
+
+(defpoll date :interval "1h" "date '+%a  %Y.%m.%d'")
+(defpoll time :interval "1s" "date '+%H:%M:%S'")
+
+(defpoll wifi :interval "1s" "~/.config/eww/scripts/wifi")
+(defpoll volume :interval "1s" :initial "{}" "~/.config/eww/scripts/volume get")
+(defwidget sidestuff []
+    (box
+     :class "sidestuff"
+     :orientation "h"
+     :space-evenly false
+     :halign "end"
+        (metric
+         :id "volume"
+         :state volume
+         :onscroll "~/.config/eww/scripts/volume scroll {}"
+         :onclick "~/.config/eww/scripts/volume click"
+         :onrightclick "pavucontrol & disown"
+        )
+        (eventbox (box (label :class "icon" :text "${wifi.icon}")))
+        (eventbox (box (label :text date)))
+        (eventbox (box (label :text time)))
+        (eventbox
+         :onclick "systemctl suspend"
+            (box (label :class "icon" :text "power_settings_new"))
+        )
+    )
+)
+
+
+(deflisten music :initial ""
+ "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+(defwidget music []
+    (box
+     :class "music"
+     :orientation "h"
+     :space-evenly false
+     :halign "center"
+        (revealer
+         :transition "slideup"
+         :reveal {music != ""}
+            music
+        )
+    )
+)
+
+(deflisten workspaces :initial "[]" "~/.config/eww/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "~/.config/eww/scripts/get-active-workspace")
+(deflisten current_window :initial "1" "~/.config/eww/scripts/get-active-window")
+(defwidget workspaces []
+    (box
+     :space-evenly false
+        (eventbox
+         :onscroll "bash ~/.config/eww/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+            (box
+             :class "workspaces"
+                (for workspace in workspaces
+                    (button
+                     :onclick "hyprctl dispatch workspace ${workspace.id}"
+                     :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                        (label :text "${workspace.id}")
+                    )
+                )
+            )
+        )
+        (box :class "active-window" (label :text {current_window ?: ""} :limit-width 30))
+    )
+)
+
+
+(defwindow bar
+ :monitor 0
+ :windowtype "dock"
+ :exclusive true
+ :geometry (geometry
+            :x "0"
+            :y "0"
+            :width "100%"
+            :anchor "bottom center")
+    (bar)
+)
