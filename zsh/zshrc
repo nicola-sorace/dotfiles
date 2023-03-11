@@ -38,8 +38,13 @@ alias clearhist="cat /dev/null > /home/nicola/.zsh_history"
 alias fplay="feh -S name --version-sort *" # Open all images in order
 alias shu="sudo shutdown -h 0"
 pp () {
-	python -c "print($1);" # Python-print shortcut
+    python -c "print($1);" # Python-print shortcut
+}
+mdview () {
+    pandoc "$1" -F mermaid-filter -o /tmp/mdview.html
+    firefox-developer-edition /tmp/mdview.html
 }
 
 # Vi mode terminal
 bindkey -v
+

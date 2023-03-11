@@ -188,7 +188,7 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+d exec rofi -show run -padding 300
 bindsym $mod+d exec rofi -show drun -sidebar-mode -padding 200 -show-icons
-bindsym $mod+c exec passmenu --type -l 6 --nb "#000000" --hb "#0196FF" --hf "#000000" --tf "#0196FF" --tb "#000000" --fb "#000000" --ff "#FFFFFF" --fn "Roboto 16" -p "⮞"
+bindsym $mod+c exec passmenu --type -l 6 -nb "#000000" -sb "#0196FF" -sf "#000000" -fn "Roboto 16" -p "⮞"
 
 bindsym $mod+m exec cat /home/nicola/.config/sway/emoji_list | bemenu -l 6 --nb "#000000" --hb "#0196FF" --hf "#000000" --tf "#0196FF" --tb "#000000" --fb "#000000" --ff "#FFFFFF" --fn "Roboto 16" -p "⮞" | cut -d" " -f1 | wl-copy
 
@@ -217,6 +217,8 @@ exec --no-startup-id nm-applet --indicator
 #exec --no-startup-id kdeconnect-indicator
 exec --no-startup-id ydotoold
 exec_always --no-startup-id flashfocus
+exec wl-paste -t text --watch clipman store --no-persist # Doesn't seem to work
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 input type:touchpad {
 	natural_scroll enabled
@@ -237,6 +239,7 @@ exec swayidle -w timeout 580 "light -t 250 -T 0.25" resume "light -t 250 -T 4" -
 #exec swayidle -w timeout 300 'swaymsg "output * dpms off"' timeout 600 'swaylock -f -c 0f0f0f' resume 'swaymsg "output * dpms on"'
 # for_window [con_id="__focused__"] inhibit_idle fullscreen # Not working
 
-#output * bg /home/nicola/Documents/wallpapers/penguin.png fill
-output * bg /home/nicola/Pictures/wallpapers/pluto.jpg fill
+output * bg /home/nicola/Pictures/wallpapers/jwst_carina_4k.png fill
+
+output HDMI-A-1 scale 2
 

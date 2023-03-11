@@ -5,11 +5,13 @@ function get_mail_count {
 }
 
 count_g=$(get_mail_count gmail)
-count_u=$(get_mail_count uni)
-total=$(($count_g + $count_u))
+#count_u=$(get_mail_count uni)
+#total=$(($count_g + $count_u))
 
-if [ $total -gt 0 ]; then
-	echo '{"text":"'$count_g' | '$count_u'", "class":"new"}'
+#if [ $total -gt 0 ]; then
+#	echo '{"text":"'$count_g' | '$count_u'", "class":"new"}'
+if [ $count_g -gt 0 ]; then
+	echo '{"text":"'$count_g'", "class":"new"}'
 else
 	echo '{"text":"", "class":"old"}'
 fi

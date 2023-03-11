@@ -2,7 +2,7 @@
 	"layer": "top",
 	"position": "bottom",
 	"height": 40,
-	"modules-left": ["sway/workspaces","sway/window","sway/mode"],
+	"modules-left": ["wlr/workspaces","wlr/window","wlr/mode"],
 	"modules-center": [],
 	"modules-right": ["memory","cpu","temperature", "pulseaudio","network","clock","tray"],
 
