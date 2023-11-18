@@ -10,3 +10,10 @@ padding=20
 border-size=0
 border-radius=4
 default-timeout=5000
+icon-path=/usr/share/icons/Adwaita
+
+[urgency=critical]
+background-color=#b72240
+text-color=#222222ee
+default-timeout=10000
+

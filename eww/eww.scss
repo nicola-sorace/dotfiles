@@ -126,7 +126,19 @@ $border: none;
             }
         }
 
+        > widget.brightness {
+            box.icon label, box.circle circular-progress {
+                color: $hi_3;
+            }
+        }
+
         > widget.volume {
+            box.icon label, box.circle circular-progress {
+                color: $hi_2;
+            }
+        }
+
+        > widget.battery {
             box.icon label, box.circle circular-progress {
                 color: $hi_1;
             }

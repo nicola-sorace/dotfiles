@@ -37,7 +37,9 @@
 (defpoll time :interval "1s" "date '+%H:%M:%S'")
 
 (defpoll wifi :interval "1s" "~/.config/eww/scripts/wifi")
+(defpoll brightness :interval "1s" :initial "{}" "~/.config/eww/scripts/brightness")
 (defpoll volume :interval "1s" :initial "{}" "~/.config/eww/scripts/volume get")
+(defpoll battery :interval "1s" :initial "{}" "~/.config/eww/scripts/battery")
 (defwidget sidestuff []
     (box
      :class "sidestuff"
@@ -45,13 +47,31 @@
      :space-evenly false
      :halign "end"
         (metric
+         :id "brightness"
+         :state brightness
+         :onscroll ""
+         :onclick ""
+         :onrightclick ""
+        )
+        (metric
          :id "volume"
          :state volume
          :onscroll "~/.config/eww/scripts/volume scroll {}"
          :onclick "~/.config/eww/scripts/volume click"
          :onrightclick "pavucontrol & disown"
         )
-        (eventbox (box (label :class "icon" :text "${wifi.icon}")))
+        (metric
+         :id "battery"
+         :state battery
+         :onscroll ""
+         :onclick ""
+         :onrightclick ""
+        )
+        (eventbox
+            :onclick "networkmanager_dmenu"
+            :onrightclick "nm-connection-editor"
+            (box (label :class "icon" :text "${wifi.icon}"))
+        )
         (eventbox (box (label :text date)))
         (eventbox (box (label :text time)))
         (eventbox
