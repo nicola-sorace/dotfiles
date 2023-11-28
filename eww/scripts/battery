@@ -1,0 +1,28 @@
+#!/bin/bash
+
+tmp_file="/tmp/battery-notify-time"
+
+query=$(acpi | head -n1)
+
+state=$(echo "$query" | sed -e "s/.*: \([[:alnum:]]*\), .*/\1/")
+percent=$(echo "$query" | sed -e "s/.*, \([[:alnum:]]*\)%.*/\1/")
+
+if [ "$state" != "Charging" ] && (( "$percent" < 10 )); then
+    if [ ! -f "$tmp_file" ] || (( "$(date '+%s')" - "$(cat $tmp_file)" > 120 )); then
+        date "+%s" > $tmp_file
+        notify-send -u critical -i ac-adapter-symbolic.symbolic "Low Battery" "Battery is at $percent%"
+    fi
+elif [ "$state" = "Charging" ] && [ -f "$tmp_file" ]; then
+    rm "$tmp_file"
+    notify-send -i ac-adapter-symbolic.symbolic "Charger Connected" "Battery is now charging"
+fi
+
+
+if [ "$state" = "Charging" ]; then
+    icon="power"
+else
+    icon="battery_full"
+fi
+
+echo {\"icon\": \"$icon\", \"value\": \"$percent\"}
+

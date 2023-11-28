@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo {\"icon\": \"wb_sunny\", \"value\": \"$(light | sed -e "s/\(.*\)\..*/\1/")\"}
+

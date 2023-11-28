@@ -10,9 +10,14 @@ export LESSHISTFILE="-"
 export GOPATH="$XDG_DATA_HOME"/go
 
 # Environmental fixes
+## Java
 export MOZ_ENABLE_WAYLAND=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 export JAVA_HOME=/usr/lib/jvm/default
+## PyTorch GPU
+export HSA_OVERRIDE_GFX_VERSION=10.3.0
+## SDL
+SDL_VIDEODRIVER="wayland,x11"
 
 # Path
 export PATH=$GOPATH/bin:$HOME/.local/bin:$PATH
