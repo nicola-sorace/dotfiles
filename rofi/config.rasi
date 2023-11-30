@@ -1,0 +1,30 @@
+configuration {
+    font: "Roboto Light 50";
+}
+
+#window {
+    background-color: #000000cc;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 200 200 50 200;
+}
+
+#listview {
+    border: none;
+}
+
+#element.normal.normal {
+    text-color: #c2e2e2;
+    background-color: #00000000;
+}
+
+#element.alternate.normal {
+    background-color: #00000000;
+    text-color: #c2e2e2;
+}
+
+#element.selected.normal {
+    background-color: #00000000;
+    text-color: #9101FF;
+}
