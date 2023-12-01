@@ -14,7 +14,7 @@ case "$1" in
             icon="volume_up"
         fi
 
-        echo {\"icon\": \"$icon\", \"value\": \"$volume\"}
+        echo {\"icon\": \"$icon\", \"value\": \"$volume\", \"tooltip\": \"$(pamixer --get-default-sink | tail -n1 | cut -d "\"" -f4)\"}
         ;;
 
     "scroll")

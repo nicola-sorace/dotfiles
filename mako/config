@@ -8,9 +8,11 @@ progress-color=#9101FF
 margin=20
 padding=20
 border-size=0
-border-radius=4
+border-radius=6
 default-timeout=5000
-icon-path=/usr/share/icons/Adwaita
+history=1
+max-history=20
+icon-path=/usr/share/icons/Dracula
 
 [urgency=critical]
 background-color=#b72240

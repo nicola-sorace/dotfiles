@@ -13,6 +13,7 @@
      :onscroll {onscroll}
      :onclick {onclick}
      :onrightclick {onrightclick}
+     :tooltip "${state.tooltip}"
         (overlay
             (box :class "icon"
                 (label :class "icon" :text "${state.icon}")
@@ -46,6 +47,12 @@
      :orientation "h"
      :space-evenly false
      :halign "end"
+        (eventbox
+            (box
+                (systray)
+            )
+        )
+
         (metric
          :id "brightness"
          :state brightness
@@ -64,13 +71,8 @@
          :id "battery"
          :state battery
          :onscroll ""
-         :onclick ""
+         :onclick "tlpui & disown"
          :onrightclick ""
-        )
-        (eventbox
-            :onclick "networkmanager_dmenu"
-            :onrightclick "nm-connection-editor"
-            (box (label :class "icon" :text "${wifi.icon}"))
         )
         (eventbox (box (label :text date)))
         (eventbox (box (label :text time)))

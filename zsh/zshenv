@@ -9,6 +9,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export LESSHISTFILE="-"
 export GOPATH="$XDG_DATA_HOME"/go
 
+# QT
+export QT_QPA_PLATFORMTHEME=qt6ct
+
 # Environmental fixes
 ## Java
 export MOZ_ENABLE_WAYLAND=1
