@@ -10,6 +10,7 @@ $bg: rgba(10, 10, 10, 0.6);
 $bg_hi1: rgba(30, 30, 30, 0.6);
 $bg_hi2: rgba(60, 60, 60, 0.6);
 $bg_lo1: rgba(0, 0, 0, 0.4);
+$bg_opaque: rgba(10, 10, 10, 0.9);
 
 $hi_1: #01FFAB;
 $hi_2: #00E5E0;
@@ -86,7 +87,7 @@ $border: none;
     }
 
     box.sidestuff {
-        > widget box {
+        > widget > overlay > box, > widget > box {
             background-color: $bg;
             border: $border;
             border-right: none;
@@ -97,11 +98,11 @@ $border: none;
                 transition: color $anim;
             }
         }
-        > widget:first-child box {
+        > widget:first-child > overlay > box, > widget:first-child > box {
             border-radius: $rad 0 0 $rad;
             border-left: $border;
         }
-        > widget:last-child box {
+        > widget:last-child > overlay > box, > widget:last-child > box {
             border-radius: 0 $rad $rad 0;
             border-right: $border;
         }
@@ -163,6 +164,21 @@ $border: none;
                 background-color: transparent;
                 color: rgba(255, 255, 255, 0.4);
             }
+        }
+    }
+
+    menu {
+        background: $bg_opaque;
+        border-radius: $rad;
+        padding: 0.5em;
+
+        menuitem {
+            border-radius: $rad;
+            padding: 0.5em;
+            transition: background $anim;
+        }
+        menuitem:hover {
+            background: $bg_hi2;
         }
     }
 }
